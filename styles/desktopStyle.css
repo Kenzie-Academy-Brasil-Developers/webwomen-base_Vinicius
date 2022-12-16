@@ -1,0 +1,46 @@
+@media (min-width: 769px) {
+  .botao__vagas {
+    width: 40%;
+  }
+  .main__container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .section__container > h2 {
+    margin-left: 7%;
+  }
+  .modalidade--botao {
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+  }
+  .modalidade {
+    width: 20%;
+    margin-bottom: 0;
+  }
+  .botao__candidatar {
+    padding: 10px 20px 10px 20px;
+  }
+  .vaga {
+    padding: 3%;
+    width: 80%;
+    margin-left: 7%;
+  }
+  .vagas__selecionadas {
+    width: 50%;
+    margin: -414px 5% 0 0;
+    min-height: 450px;
+    max-height: 450px;
+
+    padding: 0;
+  }
+  .vaga__selecionada {
+    display: flex;
+  }
+  .nenhuma__vaga {
+    display: flex;
+    margin: 120px 0 0 40px;
+  }
+}

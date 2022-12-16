@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/globalStyles.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/desktopStyle.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <title>Webwomen</title>
+    <meta
+      name="description"
+      content="Está procurando oportunidades de estágio, emprego ou bolsas de estudo? 
+      Ou até mesmo oportunidades para atender eventos de tecnologia no Brasil 
+      e ao redor do mundo?"
+    />
+  </head>
+  <body>
+    <header class="header__container">
+      <nav class="nav__container">
+        <img src="/assets/img/logo.svg" alt="" />
+        <h1>Lugar de mulher é onde quiser!</h1>
+        <p>
+          Está procurando oportunidades de estágio, emprego ou bolsas de estudo?
+          Ou até mesmo oportunidades para atender eventos de tecnologia no
+          Brasil e ao redor do mundo?
+        </p>
+        <p class="paragrafo">Confere aqui embaixo o que temos pra você!</p>
+        <button class="botao__vagas">Ir para seção das vagas</button>
+      </nav>
+    </header>
+    <main class="main__container">
+      <section class="section__container">
+        <h2>Vagas</h2>
+        <!-- <div class="vaga">
+          <h3>Pessoa desenvolvedora front-end - React JS</h3>
+          <div class="vaga__local">
+            <span>Kenzie Academy</span>
+            <span>Curitiba</span>
+          </div>
+          <p class="descricao">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+            maiores incidunt ut error dolorem voluptatem ipsum porro alias amet
+            rem laborum illo velit odio voluptates, aliquid, vel recusandae
+            autem harum.
+          </p>
+          <div class="modalidade--botao">
+            <span class="modalidade">Home Office</span>
+            <button class="botao__candidatar">Candidatar</button>
+          </div>
+        </div> -->
+      </section>
+      <section class="vagas__selecionadas">
+        <h2>Vagas selecionadas</h2>
+        <!-- <div class="vaga__selecionada">
+          <div class="vaga__selecionada--title">
+            <h3>Pessoa desenvolvedora front-end - React JS</h3>
+            <img class="lixeira" src="assets/img/Button_Options.svg" />
+          </div>
+          <div class="vaga__local">
+            <span>Kenzie Academy</span>
+            <span>Curitiba</span>
+          </div>
+        </div> -->
+        <p class="nenhuma__vaga">Você ainda não aplicou para nenhuma vaga</p>
+      </section>
+    </main>
+    <footer class="footer__container"></footer>
+    <script src="pages/home/jobsData.js"></script>
+    <script src="pages/home/vagas.js"></script>
+    <script src="pages/home/renderizarVaga.js"></script>
+    <script src="pages/home/vagasSelecionadas.js"></script>
+  </body>
+</html>
