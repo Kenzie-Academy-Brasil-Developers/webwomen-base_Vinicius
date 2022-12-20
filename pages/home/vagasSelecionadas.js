@@ -1,5 +1,6 @@
 const sectionVagasSelecionadas = document.querySelector(".vagas__selecionadas");
 const pNenhumaVaga = document.querySelector(".nenhuma__vaga");
+const botaoCandidatar = document.querySelector(".botao__candidatar")
 
 let cont = 0;
 
@@ -41,22 +42,43 @@ function vagasSelecionadas(vaga) {
   imgLixeira.addEventListener("click", () => {
     divVagaSeleciondada.remove();
 
-    let filtroRemover = vagaObj.filter((elt) => vagaObj.splice(elt, 1));
+    let index = vagaObj.findIndex((elt) => elt.id === vaga.id)
 
-    localStorage.setItem("Vaga", JSON.stringify(filtroRemover));
+    vagaObj.splice(index, 1)
+
+    let storageGet = JSON.parse(localStorage.getItem("Vaga"));
+
+    let filtro = storageGet.filter((elemento) => {
+      if (vaga.id != elemento.id) {
+        return true
+      } else {
+        return false
+      }
+    });
+
+    localStorage.setItem("Vaga", JSON.stringify(filtro))
+
+    botaoCandidatar.innerText = "Candidatar";
 
     cont--;
+
     if (cont == 0) {
       pNenhumaVaga.style.display = "flex";
+
+      localStorage.setItem("Vaga", JSON.stringify([]));
     }
   });
 }
 
 function rederizarLocalStorage() {
-  let vagaLocalStorage = JSON.parse(localStorage.getItem("Vaga"))
-  vagaLocalStorage.forEach((elt) => {
+  let vagaLocalStorage = JSON.parse(localStorage.getItem("Vaga"));
+
+  if (vagaLocalStorage) {
+    vagaObj = vagaLocalStorage
+    vagaLocalStorage.forEach((elt) => {
     criarRenderizacaoLocalStorage(elt);
-  });
+    });
+  }
 }
 
 rederizarLocalStorage();

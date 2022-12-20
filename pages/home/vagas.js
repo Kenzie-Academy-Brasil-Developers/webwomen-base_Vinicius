@@ -1,7 +1,9 @@
 const sectionContainer = document.querySelector(".section__container");
 
-function criarVagas(array) {
-  array.forEach((elt) => {
+let contId = 0;
+
+function criarVagas(vagas) {
+  vagas.forEach((vagaAtual) => {
     const divVaga = document.createElement("div");
     const h3Titulo = document.createElement("h3");
     const divVagaLocal = document.createElement("div");
@@ -12,12 +14,15 @@ function criarVagas(array) {
     const spanModalidade = document.createElement("span");
     const botaoCandidatar = document.createElement("button");
 
-    h3Titulo.innerText = elt.title;
-    spanInstituicao.innerText = elt.enterprise;
-    spanLocal.innerHTMLText = elt.location;
-    pDescricao.innerText = elt.descrition;
-    spanModalidade.innerText = elt.modalities[0];
+    h3Titulo.innerText = vagaAtual.title;
+    spanInstituicao.innerText = vagaAtual.enterprise;
+    spanLocal.innerHTMLText = vagaAtual.location;
+    pDescricao.innerText = vagaAtual.descrition;
+    spanModalidade.innerText = vagaAtual.modalities[0];
     botaoCandidatar.innerText = "Candidatar";
+    botaoCandidatar.id = `id_${contId}`;
+
+    contId++;
 
     divVaga.classList = "vaga";
     divVagaLocal.classList = "vaga__local";
@@ -34,21 +39,38 @@ function criarVagas(array) {
     botaoCandidatar.addEventListener("click", () => {
       if (botaoCandidatar.innerText === "Candidatar") {
         botaoCandidatar.innerText = "Remover candidatura";
-        vagasSelecionadas(elt);
-      } else  if(botaoCandidatar.innerText === "Remover candidatura"){
-        const divVagaSeleciondada = document.querySelector(`#vaga_${elt.id}`) 
+
+        vagasSelecionadas(vagaAtual);
+      } else if (botaoCandidatar.innerText === "Remover candidatura") {
+        const divVagaSeleciondada = document.querySelector(
+          `#vaga_${vagaAtual.id}`
+        );
 
         divVagaSeleciondada.remove();
 
-        let filtroRemover = vagaObj.filter((vaga) => vagaObj.splice(vaga, 1));
+        let index = vagaObj.findIndex((elt) => elt.id === vagaAtual.id);
 
-        localStorage.setItem("Vaga", JSON.stringify(filtroRemover));
+        vagaObj.splice(index, 1);
+
+        let storageGet = JSON.parse(localStorage.getItem("Vaga"));
+
+        let filtro = storageGet.filter((elemento) => {
+          if (vagaAtual.id != elemento.id) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+
+        localStorage.setItem("Vaga", JSON.stringify(filtro));
 
         botaoCandidatar.innerText = "Candidatar";
 
         cont--;
         if (cont == 0) {
           pNenhumaVaga.style.display = "flex";
+
+          localStorage.setItem("Vaga", JSON.stringify([]));
         }
       }
     });
