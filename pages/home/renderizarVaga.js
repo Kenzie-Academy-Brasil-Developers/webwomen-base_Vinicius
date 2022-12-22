@@ -32,4 +32,33 @@ function criarRenderizacaoLocalStorage(vagaLocalStorage) {
   if (botaoId.id[3] == vagaLocalStorage.id) {
     botaoId.innerText = "Remover candidatura";
   }
+
+  imgLixeira.addEventListener("click", () => {
+    divVagaSeleciondada.remove();
+
+    let index = vagaObj.findIndex((elt) => elt.id === vagaLocalStorage.id);
+
+    vagaObj.splice(index, 1);
+
+    let storageGet = JSON.parse(localStorage.getItem("Vaga"));
+
+    let filtro = storageGet.filter((elemento) => {
+      botaoId.innerText = "Candidatar";
+      if (vagaLocalStorage.id != elemento.id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    localStorage.setItem("Vaga", JSON.stringify(filtro));
+
+    cont--;
+
+    if (cont == 0) {
+      pNenhumaVaga.style.display = "flex";
+
+      localStorage.setItem("Vaga", JSON.stringify([]));
+    }
+  });
 }

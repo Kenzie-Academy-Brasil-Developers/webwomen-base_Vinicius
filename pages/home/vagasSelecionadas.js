@@ -1,12 +1,13 @@
 const sectionVagasSelecionadas = document.querySelector(".vagas__selecionadas");
 const pNenhumaVaga = document.querySelector(".nenhuma__vaga");
-const botaoCandidatar = document.querySelector(".botao__candidatar")
 
 let cont = 0;
 
 let vagaObj = [];
 
 function vagasSelecionadas(vaga) {
+  const botaoId = document.querySelector(`#id_${vaga.id}`);
+
   const divVagaSeleciondada = document.createElement("div");
   const divVagaSeleciondadaTitle = document.createElement("div");
   const h3Titulo = document.createElement("h3");
@@ -15,7 +16,7 @@ function vagasSelecionadas(vaga) {
   const spanInstituicao = document.createElement("span");
   const spanLocal = document.createElement("span");
 
-  divVagaSeleciondada.id = `vaga_${vaga.id}`
+  divVagaSeleciondada.id = `vaga_${vaga.id}`;
   divVagaSeleciondada.classList.add("vaga__selecionada");
   divVagaSeleciondadaTitle.classList.add("vaga__selecionada--title");
   imgLixeira.classList.add("lixeira");
@@ -42,23 +43,22 @@ function vagasSelecionadas(vaga) {
   imgLixeira.addEventListener("click", () => {
     divVagaSeleciondada.remove();
 
-    let index = vagaObj.findIndex((elt) => elt.id === vaga.id)
+    let index = vagaObj.findIndex((elt) => elt.id === vaga.id);
 
-    vagaObj.splice(index, 1)
+    vagaObj.splice(index, 1);
 
     let storageGet = JSON.parse(localStorage.getItem("Vaga"));
 
     let filtro = storageGet.filter((elemento) => {
+      botaoId.innerText = "Candidatar";
       if (vaga.id != elemento.id) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     });
 
-    localStorage.setItem("Vaga", JSON.stringify(filtro))
-
-    botaoCandidatar.innerText = "Candidatar";
+    localStorage.setItem("Vaga", JSON.stringify(filtro));
 
     cont--;
 
@@ -74,9 +74,9 @@ function rederizarLocalStorage() {
   let vagaLocalStorage = JSON.parse(localStorage.getItem("Vaga"));
 
   if (vagaLocalStorage) {
-    vagaObj = vagaLocalStorage
+    vagaObj = vagaLocalStorage;
     vagaLocalStorage.forEach((elt) => {
-    criarRenderizacaoLocalStorage(elt);
+      criarRenderizacaoLocalStorage(elt);
     });
   }
 }
